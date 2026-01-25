@@ -34,3 +34,6 @@ build/
 
 ### Mac Specific ###
 .DS_Store
+
+### env variables ###
+.env
