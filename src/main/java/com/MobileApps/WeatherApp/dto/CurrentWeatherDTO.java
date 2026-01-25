@@ -14,4 +14,6 @@ public class CurrentWeatherDTO {
     private int airQuality;
     private String sunriseTime;
     private String sunsetTime;
+    private int humidity;
+    private double precipitation;
 }

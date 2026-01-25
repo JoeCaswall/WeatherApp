@@ -42,7 +42,9 @@ public class CurrentWeatherMiddleware {
                 conditions,
                 data.getAqi(),
                 data.getSunrise(),
-                data.getSunset()
+                data.getSunset(),
+                data.getRh(),
+                data.getPrecip()
         );
     }
 }
