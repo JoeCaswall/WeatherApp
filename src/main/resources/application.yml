@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: weather-backend
+
+  datasource:
+    url: jdbc:h2:mem:weatherdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+weatherbit:
+  api:
+    key: ${WEATHERBIT_API_KEY}
+    base-url: https://api.weatherbit.io/v2.0
