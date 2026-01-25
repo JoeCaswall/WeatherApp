@@ -24,7 +24,6 @@ public class CurrentWeatherMiddleware {
     }
 
     public CurrentWeatherDTO getCurrentWeather(double lat, double lon) {
-        System.out.println("Calling Weatherbit with key = " + apiKey);
         CurrentWeatherResponse response = client.getCurrentWeather(lat, lon, apiKey);
         WeatherbitData data = response.getData().get(0);
         // Convert m/s → km/h
