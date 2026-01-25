@@ -21,7 +21,6 @@ public class CurrentWeatherMiddleware {
     public CurrentWeatherMiddleware(WeatherbitCurrentWeatherClient client, @Value("${weatherbit.api.key}") String apiKey) {
         this.client = client;
         this.apiKey = apiKey;
-        System.out.println("API KEY = " + apiKey);
     }
 
     public CurrentWeatherDTO getCurrentWeather(double lat, double lon) {
