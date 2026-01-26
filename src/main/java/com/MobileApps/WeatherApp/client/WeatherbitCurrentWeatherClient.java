@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WeatherbitCurrentWeatherClient {
 
     @GetMapping("/current")
-    CurrentWeatherResponse getCurrentWeather(
+    CurrentWeatherResponse getCurrentWeatherByCoordinates(
             @RequestParam double lat,
             @RequestParam double lon,
             @RequestParam("key") String apiKey
     );
+
+    CurrentWeatherResponse getCurrentWeatherByCity(
+            @RequestParam("city") String cityName,
+            @RequestParam("key") String apiKey);
 }
 

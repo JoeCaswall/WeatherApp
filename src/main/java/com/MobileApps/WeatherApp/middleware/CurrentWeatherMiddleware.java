@@ -3,7 +3,6 @@ package com.MobileApps.WeatherApp.middleware;
 import com.MobileApps.WeatherApp.dto.CurrentWeatherDTO;
 import com.MobileApps.WeatherApp.dto.WeatherbitCurrentConditions;
 import com.MobileApps.WeatherApp.dto.WeatherbitData;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +23,18 @@ public class CurrentWeatherMiddleware {
     }
 
     public CurrentWeatherDTO getCurrentWeather(double lat, double lon) {
-        System.out.println("Calling Weatherbit with key = " + apiKey);
-        CurrentWeatherResponse response = client.getCurrentWeather(lat, lon, apiKey);
-        WeatherbitData data = response.getData().get(0);
+        CurrentWeatherResponse response = client.getCurrentWeatherByCoordinates(lat, lon, apiKey);
+        WeatherbitData data = response.getData().getFirst();
+        return mapToDTO(data);
+    }
+
+    public CurrentWeatherDTO getCurrentWeather(String cityName) {
+        CurrentWeatherResponse response = client.getCurrentWeatherByCity(cityName, apiKey);
+        WeatherbitData data = response.getData().getFirst();
+        return mapToDTO(data);
+    }
+
+    public CurrentWeatherDTO mapToDTO(WeatherbitData data) {
         // Convert m/s → km/h
         double windSpeedKmh = data.getWind_spd() * 3.6;
         WeatherbitCurrentConditions conditions = new WeatherbitCurrentConditions(
