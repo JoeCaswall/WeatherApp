@@ -18,12 +18,19 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    @GetMapping("/current")
-    public CurrentWeatherDTO getCurrentWeather(
+    @GetMapping("/current/coordinates")
+    public CurrentWeatherDTO getCurrentWeatherByCoordinates(
             @RequestParam double lat,
             @RequestParam double lon
     ) {
         return weatherService.getCurrentWeather(lat, lon);
+    }
+
+    @GetMapping("/current/city")
+    public CurrentWeatherDTO getCurrentWeatherByCity(
+            @RequestParam String cityName
+    ) {
+        return weatherService.getCurrentWeather(cityName);
     }
 }
 

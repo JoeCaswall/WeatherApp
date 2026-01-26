@@ -15,4 +15,8 @@ public class CurrentWeatherService {
     public CurrentWeatherDTO getCurrentWeather(double lat, double lon) {
         return middleware.getCurrentWeather(lat, lon);
     }
+
+    public CurrentWeatherDTO getCurrentWeather(String cityName) {
+        return middleware.getCurrentWeather(cityName);
+    }
 }

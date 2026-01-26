@@ -4,6 +4,7 @@
 
 ## Setup
 
-TODO:
 - env var for weatherbit API
 - postgres setup
+
+TODO: Favourites endpoint 
