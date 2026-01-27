@@ -23,4 +23,8 @@ public class User {
     private String email;
 
     private String role = "USER";
+
+    @OneToOne
+    @JoinColumn(name="default_location_id")
+    private FavouriteLocation defaultLocation;
 }
