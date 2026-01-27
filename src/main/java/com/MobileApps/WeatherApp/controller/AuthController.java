@@ -2,6 +2,7 @@ package com.MobileApps.WeatherApp.controller;
 
 import com.MobileApps.WeatherApp.dto.LoginRequest;
 import com.MobileApps.WeatherApp.dto.SignupRequest;
+import com.MobileApps.WeatherApp.dto.UserDTO;
 import com.MobileApps.WeatherApp.entity.User;
 import com.MobileApps.WeatherApp.service.AuthService;
 import com.MobileApps.WeatherApp.service.UserService;
@@ -18,7 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public User signup(@Valid @RequestBody SignupRequest request) {
+    public UserDTO signup(@Valid @RequestBody SignupRequest request) throws IllegalAccessException {
         return userService.registerUser(request);
     }
 

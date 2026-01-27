@@ -2,6 +2,7 @@ package com.MobileApps.WeatherApp.service;
 
 import com.MobileApps.WeatherApp.entity.FavouriteLocation;
 import com.MobileApps.WeatherApp.entity.User;
+import com.MobileApps.WeatherApp.middleware.FavouriteLocationMapper;
 import com.MobileApps.WeatherApp.repository.FavouriteLocationRepository;
 import com.MobileApps.WeatherApp.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,11 @@ public class FavouriteLocationService {
     public FavouriteLocation addFavourite(String username, String city, Double lat, Double lon) {
         User user = userRepo.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        // Early return if city is already in favourites - removes need for error handling
+        // Duplicates are not allowed in the db entity - this is just for graceful handling
+        if (repo.existsByUserAndCityNameIgnoreCase(user, city)) {
+            return repo.findByUserAndCityName(user, city);
+        }
 
         FavouriteLocation fav = new FavouriteLocation();
         fav.setCityName(city);

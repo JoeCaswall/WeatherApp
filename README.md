@@ -8,3 +8,8 @@
 - postgres setup
 
 TODO: Favourites endpoint 
+
+## Future improvements
+
+- geolocation for default location instead of manually setting it
+- Separate Location table so multiple people having the same favourite location doesn't need infinitely scaling rows

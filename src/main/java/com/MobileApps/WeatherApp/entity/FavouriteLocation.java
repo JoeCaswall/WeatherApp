@@ -4,7 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "favourite_locations")
+// Same user cannot have the same city name as a favourite
+@Table(
+        name = "favourite_locations",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"user_id", "city_name"})
+        })
 @Data
 public class FavouriteLocation {
 

@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface FavouriteLocationRepository extends JpaRepository<FavouriteLocation, Long> {
     List<FavouriteLocation> findByUser(User user);
+    boolean existsByUserAndCityNameIgnoreCase(User user, String cityName);
+    boolean existsByUserAndLatitudeAndLongitude(User user, Double latitude, Double longitude);
+    FavouriteLocation findByUserAndCityName(User user, String cityName);
 }

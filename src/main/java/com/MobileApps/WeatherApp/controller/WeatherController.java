@@ -28,9 +28,9 @@ public class WeatherController {
 
     @GetMapping("/current/city")
     public CurrentWeatherDTO getCurrentWeatherByCity(
-            @RequestParam String cityName
+            @RequestParam String city
     ) {
-        return weatherService.getCurrentWeather(cityName);
+        return weatherService.getCurrentWeather(city);
     }
 }
 
