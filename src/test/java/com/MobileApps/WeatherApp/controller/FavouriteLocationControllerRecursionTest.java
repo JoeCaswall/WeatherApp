@@ -3,36 +3,33 @@ package com.MobileApps.WeatherApp.controller;
 import com.MobileApps.WeatherApp.entity.FavouriteLocation;
 import com.MobileApps.WeatherApp.entity.User;
 import com.MobileApps.WeatherApp.service.FavouriteLocationService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+//import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@WebMvcTest(FavouriteLocationController.class)
 class FavouriteLocationControllerRecursionTest {
 
-    @Mock
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockitoBean
     private FavouriteLocationService service;
 
-    @InjectMocks
-    private FavouriteLocationController controller;
-
-    private WebTestClient client;
-
-    @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);
-        client = WebTestClient.bindToController(controller).build();
-    }
-
     @Test
-    void testNoInfiniteRecursion() {
+    @WithMockUser(username = "joe")
+    void testNoInfiniteRecursion() throws Exception {
 
         User user = new User();
         user.setId(1L);
@@ -47,16 +44,11 @@ class FavouriteLocationControllerRecursionTest {
 
         when(service.getFavourites("joe")).thenReturn(List.of(fav));
 
-        client.get()
-                .uri("/api/favourites")
-                .header("Authorization", "Bearer dummy")
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$[0].cityName").isEqualTo("London")
-                // Check the controller is not returning entities
-                .jsonPath("$[0].user").doesNotExist()
-                .jsonPath("$[0].defaultLocation").doesNotExist();
+        mockMvc.perform(get("/api/favourites")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].cityName").value("London"))
+                .andExpect(jsonPath("$[0].user").doesNotExist())
+                .andExpect(jsonPath("$[0].defaultLocation").doesNotExist());
     }
 }
