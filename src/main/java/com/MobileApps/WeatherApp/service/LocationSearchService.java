@@ -15,6 +15,9 @@ public class LocationSearchService {
     public List<LocationDTO> search(String query) {
         String q = query.toLowerCase();
 
+        System.out.println("*****Searching for top 5 here*****");
+        loader.getCities().stream().limit(5).forEach(System.out::println);
+
         return loader.getCities().stream()
                 .filter(c -> c.cityName().toLowerCase().contains(q))
                 .map(c -> new LocationDTO(
