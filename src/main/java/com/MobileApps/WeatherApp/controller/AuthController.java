@@ -1,5 +1,6 @@
 package com.MobileApps.WeatherApp.controller;
 
+import com.MobileApps.WeatherApp.dto.JwtResponse;
 import com.MobileApps.WeatherApp.dto.LoginRequest;
 import com.MobileApps.WeatherApp.dto.SignupRequest;
 import com.MobileApps.WeatherApp.dto.UserDTO;
@@ -24,7 +25,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @RequestBody LoginRequest request) {
-        return authService.login(request);
+    public JwtResponse login(@Valid @RequestBody LoginRequest request) {
+        String jwt = authService.login(request);
+        return new JwtResponse(jwt);
     }
 }
