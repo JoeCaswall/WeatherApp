@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Data
@@ -23,9 +24,8 @@ public class CityDataLoader {
     }
 
     private List<CityRecord> loadCities() {
-    System.out.println("Stream = " + getClass().getResourceAsStream("/cities_list/cities_20000.csv"));
         try (var reader = new BufferedReader(new InputStreamReader(
-                getClass().getResourceAsStream("/cities_list/cities_20000.csv")
+                Objects.requireNonNull(getClass().getResourceAsStream("/cities_list/cities_20000.csv"))
         ))) {
             return reader.lines()
                     .skip(1) // skip header
