@@ -6,7 +6,7 @@ public record CityRecord(
         String stateCode,
         String countryCode,
         String countryFull,
-        double lat,
-        double lon
+        double latitude,
+        double longitude
 ) {}
 

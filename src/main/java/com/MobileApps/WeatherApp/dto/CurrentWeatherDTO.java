@@ -6,6 +6,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class CurrentWeatherDTO {
+    private String cityName;
     private double temp;
     private double feelsLikeTemp;
     private String windDirection;

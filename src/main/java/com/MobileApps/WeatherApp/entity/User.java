@@ -22,7 +22,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String role = "USER";
+//
+//    @Column(nullable = false)
+//    private int isActive = 1;
 
     @OneToOne
     @JoinColumn(name="default_location_id")

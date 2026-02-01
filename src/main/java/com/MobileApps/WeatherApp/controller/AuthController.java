@@ -20,7 +20,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public UserDTO signup(@Valid @RequestBody SignupRequest request) throws IllegalAccessException {
+    public String signup(@Valid @RequestBody SignupRequest request) throws IllegalAccessException {
         return userService.registerUser(request);
     }
 

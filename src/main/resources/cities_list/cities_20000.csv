@@ -1,4 +1,4 @@
-city_id,city_name,state_code,country_code,country_full,lat,lon
+city_id,city_name,state_code,country_code,country_full,latitude,longitude
 735563,Kozáni,ESYE13,GR,Piraiós Nomós,40.30069,21.78896
 735640,Komotiní,ESYE11,GR,Piraiós Nomós,41.11917,25.40535
 2995041,Maurepas,11,FR,France,48.76486,1.92923

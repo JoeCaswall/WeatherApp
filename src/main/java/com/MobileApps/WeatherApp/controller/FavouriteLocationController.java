@@ -38,8 +38,8 @@ public class FavouriteLocationController {
                 .toList();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteFavourite(@PathVariable Long id, Authentication auth) {
+    @DeleteMapping
+    public void deleteFavourite(@RequestParam Long id, Authentication auth) {
         service.deleteFavourite(id, auth.getName());
     }
 }

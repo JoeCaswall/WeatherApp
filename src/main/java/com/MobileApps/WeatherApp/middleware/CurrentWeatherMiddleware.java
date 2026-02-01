@@ -43,6 +43,7 @@ public class CurrentWeatherMiddleware {
                 data.getWeather().getCode()
         );
         return new CurrentWeatherDTO(
+                data.getCity_name(),
                 data.getTemp(),
                 data.getApp_temp(),
                 data.getWind_cdir_full(),

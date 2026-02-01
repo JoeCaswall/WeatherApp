@@ -21,7 +21,7 @@ public class UserService {
     private final FavouriteLocationRepository favouriteLocationRepository;
 
     @Transactional
-    public UserDTO registerUser(SignupRequest request) throws IllegalAccessException {
+    public String registerUser(SignupRequest request) throws IllegalAccessException {
 
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new IllegalAccessException("Username already exists");
@@ -47,7 +47,7 @@ public class UserService {
         favouriteLocationRepository.save(london);
 
         user.setDefaultLocation(london);
-        User saved =  userRepository.save(user);
-        return UserMapper.toDTO(saved);
+        userRepository.save(user);
+        return "User saved successfully";
     }
 }

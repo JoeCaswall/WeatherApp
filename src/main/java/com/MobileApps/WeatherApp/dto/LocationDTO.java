@@ -5,7 +5,7 @@ public record LocationDTO(
         String stateCode,
         String countryCode,
         String countryFull,
-        double lat,
-        double lon
+        double latitude,
+        double longitude
 ) {}
 

@@ -22,8 +22,8 @@ public class LocationSearchService {
                         c.stateCode(),
                         c.countryCode(),
                         c.countryFull(),
-                        c.lat(),
-                        c.lon()
+                        c.latitude(),
+                        c.longitude()
                 ))
                 .toList();
     }
