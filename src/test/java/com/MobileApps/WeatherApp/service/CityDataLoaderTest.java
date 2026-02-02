@@ -19,7 +19,7 @@ class CityDataLoaderTest {
         assertEquals("", record.stateCode());
         assertEquals("BS", record.countryCode());
         assertEquals("Bahamas, The", record.countryFull());
-        assertEquals(26.5333, record.lat());
-        assertEquals(-78.7000, record.lon());
+        assertEquals(26.5333, record.latitude());
+        assertEquals(-78.7000, record.longitude());
     }
 }
